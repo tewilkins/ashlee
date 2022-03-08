@@ -325,3 +325,7 @@ ggplot(casa.trim, aes(x=TREATMENT, y=PROGRESSIVE, fill=TIME)) +
   scale_fill_manual(values = c('grey50', 'grey90'), name = 'Time Elapsed', label = c('30 mins', '75 mins')) +
   theme_bw() +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+
+
+
