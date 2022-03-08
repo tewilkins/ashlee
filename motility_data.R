@@ -164,6 +164,10 @@ write.csv(get_anova_table(cap.aov),"cap_aov.csv", row.names = FALSE)
 
 # Pairwise tests
 
+
+
+
+# GGplots:
 cap.bp = cap.piv %>%
   ggplot(aes(x=TREATMENT, y=Capacitation, fill=TIME)) +
   geom_boxplot() +

@@ -12,7 +12,26 @@ casa = casa[-c(28:39),]
 casa.trim = subset(casa, TIME != 0)
 casa.trim$TIME = as.factor(casa.trim$TIME)
 
-casa.0alt = 
+casa.0alt = rbind(casa, casa[rep(1, 3), ])
+
+casa.0alt$TREATMENT[1] = 1
+casa.0alt$TREATMENT[28] = 2
+casa.0alt$TREATMENT[29] = 3
+casa.0alt$TREATMENT[30] = 4
+
+casa.0alt = rbind(casa.0alt, casa.0alt[rep(10, 3), ])
+
+casa.0alt$TREATMENT[10] = 1
+casa.0alt$TREATMENT[31] = 2
+casa.0alt$TREATMENT[32] = 3
+casa.0alt$TREATMENT[33] = 4
+
+casa.0alt = rbind(casa.0alt, casa.0alt[rep(19, 3), ])
+
+casa.0alt$TREATMENT[19] = 1
+casa.0alt$TREATMENT[34] = 2
+casa.0alt$TREATMENT[35] = 3
+casa.0alt$TREATMENT[36] = 4
 
 # Two-way Repeated Measures ANOVA 
 # Treatment and Time are both repeated elements of the ID Dunnart
@@ -39,9 +58,37 @@ casa.trim %>%
     p.adjust.method = "fdr"
   )
 
+# pairwise with t0 comp:
+
+###
+### Using 0alt data
+###
+
+# Forward motility
+casa0.aov <- anova_test(
+  data = casa.0alt, dv = MOTILE, wid = DUNNART,
+  within = c(TREATMENT, TIME)
+)
+get_anova_table(casa0.aov)
+
+# Pairwise comparisons for time variable
+mot.time.pv = casa.0alt %>%
+  group_by(TREATMENT) %>%
+  pairwise_t_test(
+    MOTILE ~ TIME, paired = TRUE, 
+    p.adjust.method = "none"
+  )
+
+# Pairwise comparisons for time variable
+mot.treatment.pv = casa.0alt %>%
+  group_by(TIME) %>%
+  pairwise_t_test(
+    MOTILE ~ TREATMENT, paired = TRUE, 
+    p.adjust.method = "none"
+  )
 
 # Progressive motility
-casa.aov <- anova_test(
+casa.aov = anova_test(
   data = casa.trim, dv = PROGRESSIVE, wid = DUNNART,
   within = c(TREATMENT,TIME)
 )
@@ -60,6 +107,35 @@ casa.trim %>%
   pairwise_t_test(
     PROGRESSIVE ~ TREATMENT, paired = TRUE, 
     p.adjust.method = "fdr"
+  )
+
+
+###
+### Using 0alt data
+###
+
+
+# Progressive motility
+casa0.aov <- anova_test(
+  data = casa.0alt, dv = PROGRESSIVE, wid = DUNNART,
+  within = c(TREATMENT, TIME)
+)
+get_anova_table(casa0.aov)
+
+# Pairwise comparisons for time variable
+prog.time.pv = casa.0alt %>%
+  group_by(TREATMENT) %>%
+  pairwise_t_test(
+    PROGRESSIVE ~ TIME, paired = TRUE, 
+    p.adjust.method = "none"
+  )
+
+# Pairwise comparisons for time variable
+prog.treatment.pv = casa.0alt %>%
+  group_by(TIME) %>%
+  pairwise_t_test(
+    PROGRESSIVE ~ TREATMENT, paired = TRUE, 
+    p.adjust.method = "none"
   )
 
 
@@ -249,6 +325,3 @@ ggplot(casa.trim, aes(x=TREATMENT, y=PROGRESSIVE, fill=TIME)) +
   scale_fill_manual(values = c('grey50', 'grey90'), name = 'Time Elapsed', label = c('30 mins', '75 mins')) +
   theme_bw() +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-
-
-tshape = read.csv("Researcher Tshape comparison.csv", sep=",", header=T)
