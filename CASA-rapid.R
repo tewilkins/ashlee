@@ -147,3 +147,6 @@ area.treatment.pv
 # Lateral amplitude
 
 lat.df = casa.0alt[,c("DUNNART", "TIME", "TREATMENT", "LATERAL_AMPLITUDE")]
+
+
+
