@@ -76,16 +76,21 @@ mot.time.pv = casa.0alt %>%
   group_by(TREATMENT) %>%
   pairwise_t_test(
     MOTILE ~ TIME, paired = TRUE, 
-    p.adjust.method = "none"
+    p.adjust.method = "fdr"
   )
+
+write.csv(na.omit(mot.time.pv), file = "Motile-Time")
 
 # Pairwise comparisons for time variable
 mot.treatment.pv = casa.0alt %>%
   group_by(TIME) %>%
   pairwise_t_test(
     MOTILE ~ TREATMENT, paired = TRUE, 
-    p.adjust.method = "none"
+    p.adjust.method = "fdr"
   )
+
+
+
 
 # Progressive motility
 casa.aov = anova_test(
@@ -127,15 +132,16 @@ prog.time.pv = casa.0alt %>%
   group_by(TREATMENT) %>%
   pairwise_t_test(
     PROGRESSIVE ~ TIME, paired = TRUE, 
-    p.adjust.method = "none"
+    p.adjust.method = "fdr"
   )
+
 
 # Pairwise comparisons for time variable
 prog.treatment.pv = casa.0alt %>%
   group_by(TIME) %>%
   pairwise_t_test(
     PROGRESSIVE ~ TREATMENT, paired = TRUE, 
-    p.adjust.method = "none"
+    p.adjust.method = "fdr"
   )
 
 
@@ -321,6 +327,20 @@ ggplot(casa.trim, aes(x=TREATMENT, y=PROGRESSIVE, fill=TIME)) +
 
 
 
+write.csv(na.omit(mot.time.pv), file = "Motile-Time.csv", row.names = FALSE)
+write.csv(na.omit(mot.treatment.pv), file = "Motile-Treatment.csv", row.names = FALSE)
+
+write.csv(na.omit(prog.time.pv), file = "Progressive-Time.csv", row.names = FALSE)
+write.csv(na.omit(prog.treatment.pv), file = "Progressive-Treatment.csv", row.names = FALSE)
+
+read.table('Progressive-Time.csv', sep=',', header=T)
+
+mega.time = rbind(mot.time.pv, prog.time.pv, static.time.pv, # rapid.time.pv, 
+                  area.time.pv)
+
+mega.treatment = na.omit(rbind(mot.treatment.pv, prog.treatment.pv, rapid.treatment.pv, static.treatment.pv, area.treatment.pv))
+\
 
 
-
+write.csv(mega.time, file = 'mega-time.csv', row.names = FALSE) # rapid is missing
+write.csv(mega.treatment, file = 'mega-treatmet.csv', row.names = FALSE)

@@ -92,7 +92,7 @@ rapid.time.pv = casa.0alt %>%
   group_by(TREATMENT) %>%
   pairwise_t_test(
     RAPID ~ TIME, paired = TRUE, 
-    p.adjust.method = "none"
+    p.adjust.method = "fdr"
   )
 
 # Pairwise comparisons for time variable
@@ -100,7 +100,7 @@ rapid.treatment.pv = casa.0alt %>%
   group_by(TIME) %>%
   pairwise_t_test(
     RAPID ~ TREATMENT, paired = TRUE, 
-    p.adjust.method = "none"
+    p.adjust.method = "fdr"
   )
 rapid.treatment.pv
 
@@ -111,7 +111,7 @@ static.time.pv = casa.0alt %>%
   group_by(TREATMENT) %>%
   pairwise_t_test(
     STATIC ~ TIME, paired = TRUE, 
-    p.adjust.method = "none"
+    p.adjust.method = "fdr"
   )
 static.time.pv
 # Pairwise comparisons for time variable
@@ -119,7 +119,7 @@ static.treatment.pv = casa.0alt %>%
   group_by(TIME) %>%
   pairwise_t_test(
     STATIC ~ TREATMENT, paired = TRUE, 
-    p.adjust.method = "none"
+    p.adjust.method = "fdr"
   )
 static.treatment.pv
 
@@ -130,7 +130,7 @@ area.time.pv = casa.0alt %>%
   group_by(TREATMENT) %>%
   pairwise_t_test(
     AREA ~ TIME, paired = TRUE, 
-    p.adjust.method = "none"
+    p.adjust.method = "fdr"
   )
 area.time.pv
 # Pairwise comparisons for time variable
@@ -138,15 +138,19 @@ area.treatment.pv = casa.0alt %>%
   group_by(TIME) %>%
   pairwise_t_test(
     AREA ~ TREATMENT, paired = TRUE, 
-    p.adjust.method = "none"
+    p.adjust.method = "fdr"
   )
 area.treatment.pv
 
+write.csv(na.omit(static.time.pv), file = "Static-Time.csv", row.names = FALSE)
+write.csv(na.omit(static.treatment.pv), file = "Static-Treatment.csv", row.names = FALSE)
 
+write.csv(na.omit(rapid.time.pv), file = "Rapid-Time.csv", row.names = FALSE)
+write.csv(na.omit(rapid.treatment.pv), file = "Rapid-Treatment.csv", row.names = FALSE)
 
 # Lateral amplitude
 
-lat.df = casa.0alt[,c("DUNNART", "TIME", "TREATMENT", "LATERAL_AMPLITUDE")]
+# lat.df = casa.0alt[,c("DUNNART", "TIME", "TREATMENT", "LATERAL_AMPLITUDE")]
 
 
 
