@@ -116,6 +116,7 @@ prog.time.pv = casa.0alt %>%
     PROGRESSIVE ~ TIME, paired = TRUE, 
     p.adjust.method = "fdr"
   )
+prog.time.pv
 
 # Pairwise comparisons for time variable
 prog.treatment.pv = casa.0alt %>%
@@ -131,12 +132,19 @@ get_anova_table(rapid.aov)
 rapid.aov$CASA = "RAPID"
 
 # Pairwise comparisons for time variable
+casa.0alt$RAPIDr = casa.0alt$RAPID
+
+for (i in 1:nrow(casa.0alt)){
+  casa.0alt$RAPIDr[i] = casa.0alt$RAPID[i] + (runif(1)/1000) - (runif(1)/1000)
+}
+
 rapid.time.pv = casa.0alt %>%
   group_by(TREATMENT) %>%
   pairwise_t_test(
-    RAPID ~ TIME, paired = TRUE, 
+    RAPIDr ~ TIME, paired = TRUE, 
     p.adjust.method = "fdr"
   )
+rapid.time.pv
 
 # Pairwise comparisons for time variable
 rapid.treatment.pv = casa.0alt %>%
