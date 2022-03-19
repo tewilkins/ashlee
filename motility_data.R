@@ -19,7 +19,6 @@ mot$Dunnart = as.factor(mot$Dunnart)
 mot$Time = as.factor(mot$Time)
 
 # Three-Way Mixed AVONA (BWW)
-
 # Check some assumptions:
 
 mot %>%
@@ -56,12 +55,10 @@ mot.aov = anova_test(
 )
 get_anova_table(mot.aov)
 
-
 # Plotting
 
 # First translate time points to minutes:
 mot$mins = (as.numeric(mot$Time)*30)-30
-
 
 # summarise data:
 mot.sums = mot %>%
