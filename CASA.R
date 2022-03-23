@@ -228,7 +228,7 @@ prog.p = prog.sum %>%
   geom_line(aes(col=TREATMENT)) +   
   geom_point(aes(shape=TREATMENT), size = 4) +
   geom_errorbar(aes(ymin = avg-s.error, ymax = avg+s.error, col=TREATMENT), width = 1) + 
-  scale_shape_manual(values=c(15, 16, 17, 18), name = 'Treatment', label = c('P4','P4 + cAMP + PTX', 'P4 + IBMX + MBCD', 'No Supplementation')) +
+  scale_shape_manual(values=c(15, 16, 17, 18), name = 'Treatment', label = c('P4','P4 + cAMP + PTX', 'IBMX + MBCD', 'No Supplementation')) +
   scale_color_manual(values=c("#000000", "#000000", "#000000", "#000000")) + 
   theme_bw() +
   scale_x_continuous(breaks=c(0,30,75)) +
@@ -239,7 +239,7 @@ prog.p = prog.sum %>%
 prog.b = ggplot(casa.trim, aes(x=TREATMENT, y=PROGRESSIVE, fill=TIME)) + 
   geom_boxplot() +
   labs(x='Treatment', y='Forward Progressive Sperm (%)') +
-  scale_x_discrete(label = c('P4','P4 + cAMP + PTX', 'IBMX + MBCD', 'No supplementation')) +
+  scale_x_discrete(label = c('P4','P4 + cAMP + PTX', 'P4 + IBMX + MBCD', 'No supplementation')) +
   scale_fill_manual(values = c('grey50', 'grey90'), name = 'Time Elapsed', label = c('30 mins', '75 mins')) +
   theme_bw() +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
@@ -269,7 +269,7 @@ mot.p = mot.sum %>%
   geom_line(aes(col=TREATMENT)) +   
   geom_point(aes(shape=TREATMENT), size = 4) +
   geom_errorbar(aes(ymin = avg-s.error, ymax = avg+s.error, col=TREATMENT), width = 1) + 
-  scale_shape_manual(values=c(15, 16, 17, 18), name = 'Treatment', label = c('P4','P4 + cAMP + PTX', 'IBMX + MBCD', 'No Supplementation')) +
+  scale_shape_manual(values=c(15, 16, 17, 18), name = 'Treatment', label = c('P4','P4 + cAMP + PTX', 'P4 + IBMX + MBCD', 'No Supplementation')) +
   scale_color_manual(values=c("#000000", "#000000", "#000000", "#000000")) + 
   theme_bw() +
   scale_x_continuous(breaks=c(0,30,75)) +
