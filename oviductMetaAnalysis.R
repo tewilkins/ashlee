@@ -6,11 +6,11 @@ meta_proteomes = read.csv("meta-proteome.csv", sep = ",", header = T)
 #install.packages("UpSetR")
 
 # The libraries you need:
-library(dplyr) # actually is included in tidyverse
+# library(dplyr) # actually is included in tidyverse
 library(tidyverse)
-# library(cluster)
+# library(cluster) # might be useful for some other analysis (e.g., HCA)
 library(UpSetR)
-# library(ComplexHeatmap)
+library(ComplexHeatmap)
 
 # Find names of all species in the proteome dataset:
 spnames = names(meta_proteomes)
@@ -73,7 +73,7 @@ plot_spnames = c('Bos taurus',
 names(pa_df) = plot_names
 
 # Create a combination matrix of logical dataframe:
-m2 = make_comb_mat(pa_df)
+m2 = make_comb_mat(pa_df) # requires ComplexHeatMap package
 
 # Check the set size (i.e., number of proteins) for each species:
 set_size(m2)
