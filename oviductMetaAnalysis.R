@@ -1,44 +1,52 @@
+# Read dataset into R:
 meta_proteomes = read.csv("meta-proteome.csv", sep = ",", header = T)
 
+# These are 
 #install.packages("cluster")
 #install.packages("UpSetR")
 
-library(dplyr)# ensuring reproducibility for sampling
+# The libraries you need:
+library(dplyr) # actually is included in tidyverse
 library(tidyverse)
-library(cluster)
+# library(cluster)
 library(UpSetR)
-library(ComplexHeatmap)
+# library(ComplexHeatmap)
 
+# Find names of all species in the proteome dataset:
 spnames = names(meta_proteomes)
 
+# Put protein dataframe into long format and remove any blank cells (different to NA!)
 all_proteins = meta_proteomes %>%
   pivot_longer(1:length(meta_proteomes), names_to = "Species", values_to = "Protein") %>%
   filter(Protein != "")
 
-
-
+# Convert all proteins to uppercase:
 all_proteins$PROTEIN = toupper(all_proteins$Protein)
+
+# Remove duplicates:
 unique_proteins = unique(all_proteins$PROTEIN)
+
+# Convert to a dataframe for logical imputation:
 pa_df = data.frame(unique_proteins)
+
+# Set the name of the protein column to 'Protein':
 colnames(pa_df) = "Protein"
 
-
-
-
-
-for (i in 1:length(spnames)){  # iterate over all species
+# This loop creates a matrix of logical data for each protein under each species.
+# A value of 1 = protein is present in that species
+# A value of 0 = protein is absent in that species
+for (i in 1:length(spnames)){   # iterates over all species
   newcol <- paste0(spnames[i])  # defines a new column with species[i] name
-  pa_df[newcol] <- 0  # populates new column with species[i] name full of 0s
+  pa_df[newcol] <- 0            # populates new column with species[i] name full of 0s
   species.iter = all_proteins[all_proteins$Species == paste0(newcol), ]  # creates a subset of biota dataframe where species[i] data exists
-  for (j in 1:nrow(pa_df)){
+  for (j in 1:nrow(pa_df)){     # iterates over all proteins within each species
     pa_df[j,newcol] <- ifelse(pa_df$Protein[j] %in% species.iter$PROTEIN, 1, 0)  # sets row to 1 if that species was observed for that sample
   }
 }
 
-
 # upset plot :(
-spnames
 
+# Create a list of names that are better suited to the plot axis:
 plot_names = c('Protein',
                'Bovine (OF)',
                'Feline (OEV)',
@@ -50,6 +58,7 @@ plot_names = c('Protein',
                'Leporine (OF)',
                'Human (OF)')
 
+# Binomial nomenclature:
 plot_spnames = c('Bos taurus',
                'Felis catus',
                'Sus domesticus',
@@ -60,13 +69,17 @@ plot_spnames = c('Bos taurus',
                'Oryctolagus cuniculus',
                'Homo sapiens')
 
-
+# Set column names in presence-absence dataframe:
 names(pa_df) = plot_names
 
+# Create a combination matrix of logical dataframe:
 m2 = make_comb_mat(pa_df)
-set_size(m2)
-UpSet(m2)
 
+# Check the set size (i.e., number of proteins) for each species:
+set_size(m2)
+
+# Plot the UpSet Plot:
+UpSet(m2)
 
 
 
@@ -104,9 +117,3 @@ names(pa_df_NOHUMAN) = plot_names_nh
 m3 = make_comb_mat(pa_df_NOHUMAN)
 set_size(m3)
 UpSet(m3)
-
-# hierarchical cluster
-
-protein_dist <- dist(pa_df, method = 'euclidean')
-Hierar_cl <- hclust(protein_dist, method = "average")
-plot(Hierar_cl)
