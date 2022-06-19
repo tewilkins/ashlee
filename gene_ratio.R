@@ -1,4 +1,4 @@
-de_report = read.table("DE_proteins_report.tsv", header = T, sep = "\t")
+de_report = read.table("DE_proteins_report.csv", header = T, sep = ",")
 
 library(ggplot2)
 library(tidyverse)
