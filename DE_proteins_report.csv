@@ -9,25 +9,25 @@ GO:0035082,axoneme assembly,33,17,0.9,3.20E-19,4.64E-16
 GO:0007368,determination of left/right symmetry,29,15,0.79,4.60E-17,5.84E-14
 GO:0009799,specification of symmetry,31,15,0.85,1.70E-16,1.73E-13
 GO:0009855,determination of bilateral symmetry,31,15,0.85,1.70E-16,1.73E-13
-GO:0120031,plasma membrane bounded cell projection ...,148,26,4.04,1.20E-15,1.11E-12
+GO:0120031,plasma membrane bounded cell projection assembly,148,26,4.04,1.20E-15,1.11E-12
 GO:0030031,cell projection assembly,150,26,4.1,1.70E-15,1.44E-12
 GO:0007389,pattern specification process,44,16,1.2,4.10E-15,3.20E-12
 GO:0042073,intraciliary transport,22,12,0.6,3.60E-14,2.61E-11
 GO:0070286,axonemal dynein complex assembly,18,11,0.49,8.10E-14,5.48E-11
 GO:0070925,organelle assembly,220,28,6.01,4.00E-13,2.54E-10
-GO:0120036,plasma membrane bounded cell projection ...,339,32,9.26,2.10E-11,1.25E-08
-GO:0006928,movement of cell or subcellular componen...,417,35,11.39,4.60E-11,2.59E-08
+GO:0120036,plasma membrane bounded cell projection organization,339,32,9.26,2.10E-11,1.25E-08
+GO:0006928,movement of cell or subcellular component,417,35,11.39,4.60E-11,2.59E-08
 GO:0030030,cell projection organization,350,32,9.56,5.20E-11,2.78E-08
 GO:0036158,outer dynein arm assembly,11,7,0.3,2.60E-09,1.26E-06
 GO:0000226,microtubule cytoskeleton organization,142,19,3.88,2.60E-09,1.26E-06
 GO:0010970,transport along microtubule,56,12,1.53,1.50E-08,6.62E-06
 GO:0099111,microtubule-based transport,56,12,1.53,1.50E-08,6.62E-06
-GO:0030705,cytoskeleton-dependent intracellular tra...,62,12,1.69,5.10E-08,2.16E-05
+GO:0030705,cytoskeleton-dependent intracellular transport,62,12,1.69,5.10E-08,2.16E-05
 GO:0030317,flagellated sperm motility,19,7,0.52,3.30E-07,0.000128852
 GO:0097722,sperm motility,19,7,0.52,3.30E-07,0.000128852
 GO:0006996,organelle organization,810,42,22.13,1.00E-06,0.000376
 GO:0031503,protein-containing complex localization,83,12,2.27,1.40E-06,0.0005076
-GO:0000491,small nucleolar ribonucleoprotein comple...,5,4,0.14,2.50E-06,0.000846
+GO:0000491,small nucleolar ribonucleoprotein complex assembly,5,4,0.14,2.50E-06,0.000846
 GO:0000492,box C/D snoRNP assembly,5,4,0.14,2.50E-06,0.000846
 GO:0036159,inner dynein arm assembly,11,5,0.3,5.40E-06,0.001768413
 GO:0007224,smoothened signaling pathway,28,7,0.76,6.40E-06,0.0020304
@@ -39,24 +39,24 @@ GO:0019953,sexual reproduction,130,13,3.55,3.30E-05,0.009054486
 GO:0007507,heart development,114,12,3.11,4.20E-05,0.011220632
 GO:0060972,left/right pattern formation,9,4,0.25,5.80E-05,0.015097846
 GO:0003002,regionalization,27,6,0.74,6.40E-05,0.0162432
-GO:0035735,intraciliary transport involved in ciliu...,4,3,0.11,7.70E-05,0.019065951
+GO:0035735,intraciliary transport involved in cilium assembly,4,3,0.11,7.70E-05,0.019065951
 GO:0001947,heart looping,11,4,0.3,0.00015,0.036257143
 GO:0044703,multi-organism reproductive process,153,13,4.18,0.00019,0.044857674
 GO:0003143,embryonic heart tube morphogenesis,12,4,0.33,0.00022,0.049632
-GO:0061371,determination of heart left/right asymme...,12,4,0.33,0.00022,0.049632
+GO:0061371,determination of heart left/right asymmetry,12,4,0.33,0.00022,0.049632
 GO:1905515,non-motile cilium assembly,22,5,0.6,0.00024,0.052966957
-GO:0001539,cilium or flagellum-dependent cell motil...,13,4,0.36,0.0003,0.062155102
+GO:0001539,cilium or flagellum-dependent cell motility,13,4,0.36,0.0003,0.062155102
 GO:0021591,ventricular system development,13,4,0.36,0.0003,0.062155102
 GO:0060285,cilium-dependent cell motility,13,4,0.36,0.0003,0.062155102
 GO:0007276,gamete generation,102,10,2.79,0.00035,0.068330769
 GO:0000003,reproduction,208,15,5.68,0.00035,0.068330769
 GO:0022414,reproductive process,208,15,5.68,0.00035,0.068330769
 GO:0022607,cellular component assembly,738,34,20.16,0.00037,0.06956
-GO:0035066,positive regulation of histone acetylati...,6,3,0.16,0.00037,0.06956
+GO:0035066,positive regulation of histone acetylation,6,3,0.16,0.00037,0.06956
 GO:0035050,embryonic heart tube development,14,4,0.38,0.00042,0.077524364
-GO:2000758,positive regulation of peptidyl-lysine a...,7,3,0.19,0.00063,0.11421
-GO:0071169,establishment of protein localization to...,2,2,0.05,0.00074,0.131797895
+GO:2000758,positive regulation of peptidyl-lysine acetylation,7,3,0.19,0.00063,0.11421
+GO:0071169,establishment of protein localization to chromatin,2,2,0.05,0.00074,0.131797895
 GO:0007010,cytoskeleton organization,351,20,9.59,0.00077,0.134776552
 GO:0007286,spermatid development,28,5,0.76,0.0008,0.137654237
 GO:0048515,spermatid differentiation,29,5,0.79,0.00094,0.159048
-GO:1901985,positive regulation of protein acetylati...,8,3,0.22,0.00099,0.164761967
+GO:1901985,positive regulation of protein acetylation,8,3,0.22,0.00099,0.164761967
