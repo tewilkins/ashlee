@@ -8,6 +8,7 @@ meta_proteomes = read.csv("meta-proteome.csv", sep = ",", header = T)
 # The libraries you need:
 # library(dplyr) # actually is included in tidyverse
 library(tidyverse)
+library(data.table)
 # library(cluster) # might be useful for some other analysis (e.g., HCA)
 library(UpSetR)
 library(ComplexHeatmap)
@@ -116,4 +117,19 @@ names(pa_df_NOHUMAN) = plot_names_nh
 
 m3 = make_comb_mat(pa_df_NOHUMAN)
 set_size(m3)
-UpSet(m3)
+m3_plot = UpSet(m3)
+
+attr(attr(m3_plot@matrix, which = "data"), which = "dimnames")
+
+animals = attr(attr(m3_plot@matrix, which = "data"), which = "dimnames")[2][[1]]
+
+animals[9] = "intersection size"
+animals
+
+df1.1 = data.frame(m3_plot@matrix)
+df1.2 = data.frame(attr(m3_plot@matrix, which = "comb_size"))
+df2 = transpose(df1.1)
+upset_df = cbind(df2, df1.2)
+colnames(upset_df) = animals
+
+write.csv(upset_df, file = "UpSet plot intersection sizes.csv", row.names = FALSE)
